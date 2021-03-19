@@ -14,6 +14,7 @@ const ShoppingList = () => {
         <>
             <List list={list} />
             <div>Controls</div>
+            <div>Past Orders</div>
         </>
     )
 }
