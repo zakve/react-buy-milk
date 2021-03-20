@@ -4,16 +4,20 @@ import grey from '@material-ui/core/colors/grey';
 
 const useStyles = makeStyles({
     container: {
-        display: flex,
         alignItems: 'center',
-        background: grey[100],
+        border: '1px solid',
+        borderColor: grey[100],
         borderRadius: 10,
-        color: 'black',
-        padding: '30px',
+        padding: '10px',
     },
 });
 
-const Item = ({ list }) => {
+const Item = ({
+    image = '',
+    title = '',
+    price = 0,
+    onAddClick = () => { }
+}) => {
     const classes = useStyles();
 
     return (

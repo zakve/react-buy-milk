@@ -24,7 +24,7 @@ const List = ({ list }) => {
                 list && list.length > 0 &&
                 list.map((item, i) => {
                     return (
-                        <p>{item.title} {item.count}</p>
+                        <p key={i}>{item.title} {item.count}</p>
                     )
                 })
             }
