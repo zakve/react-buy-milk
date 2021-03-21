@@ -40,16 +40,16 @@ const ShoppingList = () => {
                     <Grid item xs={12}>
                         <Paper elevation={0} className={classes.paper}><List list={list} /></Paper>
                     </Grid>
-                    <Grid item xs={3}>
+                    <Grid item md={3} sm={4} xs={6}>
                         <Paper elevation={0} className={classes.paper}><Item /></Paper>
                     </Grid>
-                    <Grid item xs={3}>
+                    <Grid item md={3} sm={4} xs={6}>
                         <Paper elevation={0} className={classes.paper}><Item /></Paper>
                     </Grid>
-                    <Grid item xs={3}>
+                    <Grid item md={3} sm={4} xs={6}>
                         <Paper elevation={0} className={classes.paper}><Item /></Paper>
                     </Grid>
-                    <Grid item xs={3}>
+                    <Grid item md={3} sm={4} xs={6}>
                         <Paper elevation={0} className={classes.paper}><Item /></Paper>
                     </Grid>
                 </Grid>
