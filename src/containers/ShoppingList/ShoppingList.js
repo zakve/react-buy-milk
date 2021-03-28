@@ -39,7 +39,7 @@ const ShoppingList = () => {
     useEffect(() => {
         if (list && list.length > 0) {
             let price = 0
-            list.map((item, i) => {
+            list.forEach((item, i) => {
                 price += (item.price * item.count)
             })
             setTotalPrice(price)
