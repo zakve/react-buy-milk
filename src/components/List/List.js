@@ -1,13 +1,8 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
-import grey from '@material-ui/core/colors/grey';
 
 const useStyles = makeStyles({
     container: {
-        background: grey[100],
-        borderRadius: 10,
-        color: 'black',
-        padding: '30px',
     },
 });
 

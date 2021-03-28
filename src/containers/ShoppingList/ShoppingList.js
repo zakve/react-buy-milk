@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import grey from '@material-ui/core/colors/grey';
 
 import List from "../../components/List/List";
 import Item from "../../components/Item/Item";
@@ -14,25 +15,37 @@ const useStyles = makeStyles((theme) => ({
         gridGap: theme.spacing(3),
     },
     paper: {
-        // padding: theme.spacing(1),
-        // textAlign: 'center',
-        // color: theme.palette.text.secondary,
-        // whiteSpace: 'nowrap',
-        // marginBottom: theme.spacing(1),
+        background: grey[100],
+        borderRadius: 10,
+        color: 'black',
+        padding: '30px',
+    },
+    price: {
+        textAlign: "right"
     }
 }));
 
 const ShoppingList = () => {
-    const classes = useStyles();
+    const styles = useStyles();
 
     const [list, setList] = useState([
-        { id: 1, title: 'Fresh salad', price: 15, count: 1, image: 'https://images.unsplash.com/photo-1543339308-43e59d6b73a6?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80' },
+        { id: 1, title: 'Fresh salad', price: 15, count: 1, image: 'https://images.unsplash.com/photo-1529059997568-3d847b1154f0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80' },
         { id: 2, title: 'Norweigan Bacon', price: 35, count: 1, image: 'https://images.unsplash.com/photo-1528607929212-2636ec44253e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80' },
         { id: 3, title: 'Gouda', price: 20, count: 1, image: 'https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1053&q=80' },
         { id: 4, title: 'Chicken legs', price: 55, count: 2, image: 'https://images.unsplash.com/photo-1588767768106-1b20e51d9d68?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80' }
     ])
-    const [price, setPrice] = useState(0)
+    const [totalPrice, setTotalPrice] = useState(0)
 
+    useEffect(() => {
+        if (list && list.length > 0) {
+            let price = 0
+            list.map((item, i) => {
+                console.log(item.price * item.count)
+                price += (item.price * item.count)
+            })
+            setTotalPrice(price)
+        }
+    }, [totalPrice, list])
 
     const addToListHandler = (item) => {
         let newArr = [...list]
@@ -45,12 +58,17 @@ const ShoppingList = () => {
             <Grid item sm={10} xs={12}>
                 <Grid container>
                     <Grid item xs={12}>
-                        <Paper elevation={0} className={classes.paper}><List list={list} /></Paper>
+                        <Paper elevation={0} className={styles.paper}>
+                            <List list={list} />
+                            <div className={styles.price}>
+                                <p>Total: {totalPrice}</p>
+                            </div>
+                        </Paper>
                     </Grid>
                     {
                         list.map((item, i) =>
                             <Grid key={i} item md={3} sm={4} xs={6}>
-                                <Paper elevation={0} className={classes.paper}>
+                                <Paper elevation={0}>
                                     <Item
                                         title={item.title}
                                         price={item.price}
@@ -63,7 +81,7 @@ const ShoppingList = () => {
                 </Grid>
             </Grid>
             <Grid item sm={2} xs={12}>
-                <Paper elevation={0} className={classes.paper}><Typography>Past Orders</Typography></Paper>
+                <Paper elevation={0}><Typography>Past Orders</Typography></Paper>
             </Grid>
         </Grid>
     )
