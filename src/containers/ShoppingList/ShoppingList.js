@@ -4,15 +4,17 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Hidden from '@material-ui/core/Hidden';
+import Container from '@material-ui/core/Container';
 import grey from '@material-ui/core/colors/grey';
 
 import List from "../../components/List/List";
 import Item from "../../components/Item/Item";
 import shoppingBagImage from "../../assets/images/shoppingBag.png";
+import buyMilkLogo from "../../assets/images/BuyMilkLogo.png";
 
 const useStyles = makeStyles((theme) => ({
-    container: {
-        marginTop: 50
+    main: {
+        marginTop: 30
     },
     paper: {
         background: grey[100],
@@ -29,6 +31,9 @@ const useStyles = makeStyles((theme) => ({
     imageContainer: {
         marginTop: -100,
         alignItems: 'flex-start'
+    },
+    logo: {
+        height: 50
     }
 }));
 
@@ -66,45 +71,48 @@ const ShoppingList = () => {
     }
 
     return (
-        <Grid container className={styles.container}>
-            <Grid item sm={10} xs={12}>
-                <Grid container>
-                    <Grid item xs={12}>
-                        <Paper elevation={0} className={styles.paper}>
-                            <Grid container>
-                                <Grid item sm={8} xs={12}>
-                                    <List list={list} onRemoveClick={removeFromListHandler} />
-                                    <div className={styles.price}>
-                                        <p>Total: {totalPrice}</p>
-                                    </div>
-                                </Grid>
-                                <Hidden xsDown>
-                                    <Grid item sm={4} xs={12} className={styles.imageContainer}>
-                                        <img src={shoppingBagImage} alt='shoppingBag' className={styles.image} />
+        <Container className={styles.main}>
+            <img src={buyMilkLogo} alt='logo' className={styles.logo} />
+            <Grid container className={styles.container}>
+                <Grid item sm={10} xs={12}>
+                    <Grid container>
+                        <Grid item xs={12}>
+                            <Paper elevation={0} className={styles.paper}>
+                                <Grid container>
+                                    <Grid item sm={8} xs={12}>
+                                        <List list={list} onRemoveClick={removeFromListHandler} />
+                                        <div className={styles.price}>
+                                            <p>Total: {totalPrice}</p>
+                                        </div>
                                     </Grid>
-                                </Hidden>
-                            </Grid>
-                        </Paper>
+                                    <Hidden xsDown>
+                                        <Grid item sm={4} xs={12} className={styles.imageContainer}>
+                                            <img src={shoppingBagImage} alt='shoppingBag' className={styles.image} />
+                                        </Grid>
+                                    </Hidden>
+                                </Grid>
+                            </Paper>
+                        </Grid>
+                        {
+                            list.map((item, i) =>
+                                <Grid key={i} item md={3} sm={4} xs={6}>
+                                    <Paper elevation={0}>
+                                        <Item
+                                            title={item.title}
+                                            price={item.price}
+                                            image={item.image}
+                                            onAddClick={() => addToListHandler(item)} />
+                                    </Paper>
+                                </Grid>
+                            )
+                        }
                     </Grid>
-                    {
-                        list.map((item, i) =>
-                            <Grid key={i} item md={3} sm={4} xs={6}>
-                                <Paper elevation={0}>
-                                    <Item
-                                        title={item.title}
-                                        price={item.price}
-                                        image={item.image}
-                                        onAddClick={() => addToListHandler(item)} />
-                                </Paper>
-                            </Grid>
-                        )
-                    }
+                </Grid>
+                <Grid item sm={2} xs={12}>
+                    <Paper elevation={0}><Typography>Past Orders</Typography></Paper>
                 </Grid>
             </Grid>
-            <Grid item sm={2} xs={12}>
-                <Paper elevation={0}><Typography>Past Orders</Typography></Paper>
-            </Grid>
-        </Grid>
+        </Container>
     )
 }
 
