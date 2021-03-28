@@ -32,9 +32,9 @@ const useStyles = makeStyles({
 });
 
 const Item = ({
-    image = 'https://images.unsplash.com/photo-1543339308-43e59d6b73a6?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80',
-    title = 'Salad',
-    price = 12,
+    image = '',
+    title = 'TITLE',
+    price = 0,
     onAddClick = () => { }
 }) => {
     const classes = useStyles();
@@ -47,7 +47,7 @@ const Item = ({
                     <Typography variant="body2" color="textSecondary" component="p">{title}</Typography>
                     <Typography>{price}&nbsp;Kč</Typography>
                 </div>
-                <IconButton aria-label="Add" color="secondary" className={classes.button}>
+                <IconButton aria-label="Add" color="secondary" className={classes.button} onClick={onAddClick}>
                     <AddIcon color="secondary" />
                 </IconButton>
             </div>
