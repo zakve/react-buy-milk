@@ -10,7 +10,7 @@ import grey from '@material-ui/core/colors/grey';
 import List from "../../components/List/List";
 import Item from "../../components/Item/Item";
 import shoppingBagImage from "../../assets/images/shoppingBag.png";
-import buyMilkLogo from "../../assets/images/BuyMilkLogo.png";
+import buyMilkLogo from "../../assets/images/buyMilkLogo.png";
 
 const useStyles = makeStyles((theme) => ({
     main: {
