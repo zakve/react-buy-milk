@@ -52,13 +52,19 @@ const ShoppingList = () => {
         setList(newArr)
     }
 
+    const removeFromListHandler = (item) => {
+        let newArr = [...list]
+        Object.assign(list[list.findIndex(el => el.id === item.id)], item.count > 0 && item.count--)
+        setList(newArr)
+    }
+
     return (
         <Grid container>
             <Grid item sm={10} xs={12}>
                 <Grid container>
                     <Grid item xs={12}>
                         <Paper elevation={0} className={styles.paper}>
-                            <List list={list} />
+                            <List list={list} onRemoveClick={removeFromListHandler} />
                             <div className={styles.price}>
                                 <p>Total: {totalPrice}</p>
                             </div>
