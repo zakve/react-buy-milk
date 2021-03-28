@@ -3,16 +3,16 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import Hidden from '@material-ui/core/Hidden';
 import grey from '@material-ui/core/colors/grey';
 
 import List from "../../components/List/List";
 import Item from "../../components/Item/Item";
+import shoppingBagImage from "../../assets/images/shoppingBag.png";
 
 const useStyles = makeStyles((theme) => ({
     container: {
-        display: 'grid',
-        gridTemplateColumns: 'repeat(12, 1fr)',
-        gridGap: theme.spacing(3),
+        marginTop: 50
     },
     paper: {
         background: grey[100],
@@ -22,6 +22,13 @@ const useStyles = makeStyles((theme) => ({
     },
     price: {
         textAlign: "right"
+    },
+    image: {
+        width: '100%',
+    },
+    imageContainer: {
+        marginTop: -100,
+        alignItems: 'flex-start'
     }
 }));
 
@@ -59,15 +66,24 @@ const ShoppingList = () => {
     }
 
     return (
-        <Grid container>
+        <Grid container className={styles.container}>
             <Grid item sm={10} xs={12}>
                 <Grid container>
                     <Grid item xs={12}>
                         <Paper elevation={0} className={styles.paper}>
-                            <List list={list} onRemoveClick={removeFromListHandler} />
-                            <div className={styles.price}>
-                                <p>Total: {totalPrice}</p>
-                            </div>
+                            <Grid container>
+                                <Grid item sm={8} xs={12}>
+                                    <List list={list} onRemoveClick={removeFromListHandler} />
+                                    <div className={styles.price}>
+                                        <p>Total: {totalPrice}</p>
+                                    </div>
+                                </Grid>
+                                <Hidden xsDown>
+                                    <Grid item sm={4} xs={12} className={styles.imageContainer}>
+                                        <img src={shoppingBagImage} alt='shoppingBag' className={styles.image} />
+                                    </Grid>
+                                </Hidden>
+                            </Grid>
                         </Paper>
                     </Grid>
                     {
