@@ -48,7 +48,7 @@ const List = ({
                 {
                     list && list.length > 0 &&
                     list.map((item, i) =>
-                        <ListItem key={i}>
+                        <ListItem key={i} dense>
                             <ListItemText primary={item.title} />
                             <ListItemText primary={item.count} className={styles.count} />
                             <ListItemSecondaryAction>

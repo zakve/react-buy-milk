@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Hidden from '@material-ui/core/Hidden';
 import Container from '@material-ui/core/Container';
 import grey from '@material-ui/core/colors/grey';
+import Button from '@material-ui/core/Button'
 
 import List from "../../components/List/List";
 import Item from "../../components/Item/Item";
@@ -83,6 +84,9 @@ const ShoppingList = () => {
                                         <List list={list} onRemoveClick={removeFromListHandler} />
                                         <div className={styles.price}>
                                             <p>Total: {totalPrice}</p>
+                                            <Button variant="contained" color="secondary">
+                                                ORDER NOW
+                                            </Button>
                                         </div>
                                     </Grid>
                                     <Hidden xsDown>
